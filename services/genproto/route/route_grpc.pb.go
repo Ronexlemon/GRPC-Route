@@ -36,8 +36,8 @@ type RouteGuideClient interface {
 	// Obtains the feature at a given position.
 	//
 	// A feature with an empty name is returned if there's no feature at the given
-	// position.
-	GetFeature(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error)
+	// position.GetFeatur
+	e(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error)
 	// A server-to-client streaming RPC.
 	//
 	// Obtains the Features available within the given Rectangle.  Results are
