@@ -1,5 +1,5 @@
-package server
-var ExampleData = []byte(`[{
+package main
+var ExampleDrata = []byte(`[{
     "location": {
         "latitude": 407838351,
         "longitude": -746143763
@@ -600,3 +600,8 @@ var ExampleData = []byte(`[{
     },
     "name": "3 Hasta Way, Newton, NJ 07860, USA"
 }]`)
+
+func ReturnData()[]byte {
+    return ExampleData
+
+}
