@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RouteGuide_GetFeature_FullMethodName   = "/protobuf.RouteGuide/GetFeature"
-	RouteGuide_ListFeatures_FullMethodName = "/protobuf.RouteGuide/ListFeatures"
-	RouteGuide_RecordRoute_FullMethodName  = "/protobuf.RouteGuide/RecordRoute"
-	RouteGuide_RouteChat_FullMethodName    = "/protobuf.RouteGuide/RouteChat"
+	RouteGuide_GetFeature_FullMethodName   = "/routeguide.RouteGuide/GetFeature"
+	RouteGuide_ListFeatures_FullMethodName = "/routeguide.RouteGuide/ListFeatures"
+	RouteGuide_RecordRoute_FullMethodName  = "/routeguide.RouteGuide/RecordRoute"
+	RouteGuide_RouteChat_FullMethodName    = "/routeguide.RouteGuide/RouteChat"
 )
 
 // RouteGuideClient is the client API for RouteGuide service.
@@ -36,8 +36,8 @@ type RouteGuideClient interface {
 	// Obtains the feature at a given position.
 	//
 	// A feature with an empty name is returned if there's no feature at the given
-	// position.GetFeatur
-	e(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error)
+	// position.
+	GetFeature(ctx context.Context, in *Point, opts ...grpc.CallOption) (*Feature, error)
 	// A server-to-client streaming RPC.
 	//
 	// Obtains the Features available within the given Rectangle.  Results are
@@ -183,7 +183,7 @@ type UnsafeRouteGuideServer interface {
 }
 
 func RegisterRouteGuideServer(s grpc.ServiceRegistrar, srv RouteGuideServer) {
-	// If the following call pancis, it indicates UnimplementedRouteGuideServer was
+	// If the following call panics, it indicates UnimplementedRouteGuideServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
@@ -240,7 +240,7 @@ type RouteGuide_RouteChatServer = grpc.BidiStreamingServer[RouteNote, RouteNote]
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RouteGuide_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "protobuf.RouteGuide",
+	ServiceName: "routeguide.RouteGuide",
 	HandlerType: (*RouteGuideServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -266,5 +266,5 @@ var RouteGuide_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "route.proto",
+	Metadata: "examples/route_guide/routeguide/route_guide.proto",
 }
